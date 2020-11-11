@@ -10,12 +10,14 @@ import 'Controllers/userControllers.dart';
 import 'Controllers/boringAppController.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() async {
-  await Hive.initFlutter();
+void main()  {
+      
+  
   Get.lazyPut(() => BoringAppController());
   //Get.put(BoringAppController());
-  Get.put(UserController());
+  //Get.put(UserController());
   //Box box;
 
   return runApp(GetMaterialApp(home: Home()));

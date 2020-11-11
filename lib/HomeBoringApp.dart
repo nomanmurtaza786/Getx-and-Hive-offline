@@ -40,7 +40,7 @@ class BoringListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       //strokeWidth: 5.0,
-      semanticsLabel: 'Fetch Data',
+      //semanticsLabel: 'Fetch Data',
       onRefresh: boringController.activityDataService,
       child: ListView.builder(
         //cacheExtent: 2.0,
