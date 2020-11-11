@@ -31,7 +31,7 @@ class BoringAppController extends GetxController {
 
     try {
       var response = await http.get(_url);
-
+//
       //var res = response.body;
       //print(res);
       //var res = json.decode(response.body); //json object
@@ -51,7 +51,7 @@ class BoringAppController extends GetxController {
       // insert the data
       await box.clear();
       box.add(data);
-      
+
 
       // insert the data
     }
