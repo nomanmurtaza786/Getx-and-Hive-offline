@@ -17,10 +17,8 @@ class HomeBoringApp extends StatelessWidget {
       ),
       body: Obx(
         () => boringController.isLoading.value
-            ? SingleChildScrollView(
-                child: Column(
-                  children: [LinearProgressIndicator(), VxZeroList()],
-                ),
+            ? Column(
+                children: [LinearProgressIndicator()],
               )
             : BoringListView(boringController: boringController),
       ),
@@ -38,48 +36,48 @@ class BoringListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      //strokeWidth: 5.0,
-      //semanticsLabel: 'Fetch Data',
-      onRefresh: boringController.activityDataService,
-      child: ListView.builder(
-        //cacheExtent: 2.0,
-        //addAutomaticKeepAlives: true,
-        //reverse: true,
-        itemCount: boringController.boringActivity.length,
-        itemBuilder: (BuildContext context, index) {
-          return Card(
-            elevation: 2,
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                ListTile(
-                  //dense: true,
-                  enabled: true,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onTap: () {},
-                  isThreeLine: true,
-                  leading: Icon(Icons.person),
-                  title: Obx(() => Text(
-                        boringController.boringActivity[index].activity,
-                        style: TextStyle(fontSize: 20),
-                      )),
-                  subtitle: Obx(
-                    () => Text(
-                      boringController.boringActivity[index].activity,
-                      style: TextStyle(fontSize: 15),
+    return Obx(() => RefreshIndicator(
+          //strokeWidth: 5.0,
+          //semanticsLabel: 'Fetch Data',
+          onRefresh: boringController.dataReload,
+          child: ListView.builder(
+            //cacheExtent: 2.0,
+            //addAutomaticKeepAlives: true,
+            //reverse: true,
+            itemCount: boringController.boringActivity.length,
+            itemBuilder: (BuildContext context, index) {
+              return Card(
+                elevation: 2,
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    ListTile(
+                      //dense: true,
+                      enabled: true,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      onTap: () {},
+                      isThreeLine: true,
+                      leading: Icon(Icons.person),
+                      title: Obx(() => Text(
+                            boringController.boringActivity[index].activity,
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      subtitle: Obx(
+                        () => Text(
+                          boringController.boringActivity[index].activity,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
+              );
+            },
+          ),
+        ));
   }
 }
